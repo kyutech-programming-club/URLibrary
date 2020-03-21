@@ -7,15 +7,14 @@ def show_entries():
     # loginしていないときの処理（loginしていないときloginフォームへリダイレクト）
     if not session.get("user_id"):
         #print("session is none")
-        return redirect(url_for("login"))
+        return redirect(url_for("create_user"))
     return render_template("index.html")
 
 # /loginにリクエストがあったときのルーティング (GET,POST つかいますよーっって感じ)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == 'POST': #もしPOSTリクエストがあったとき
-        user  = User.query.filter_by(name=request.form["username"]).first()
+        user = User.query.filter_by(name=request.form["username"]).first()
         if user is None:
             print('ユーザ名が異なります')
             return render_template('login.html')
@@ -26,6 +25,22 @@ def login():
 
     return render_template('login.html')
     #GETメソッドの場合は（/loginにアクセスされたとき） render_template('login.html') が実行されてログインページへ
+
+
+@app.route("/first_page", methods = ["GET","POST"])
+def create_user():
+    if request.method == "POST":
+        user = User(name = request.form["username"])
+        if User.query.filter_by(name=request.form["username"]).first():
+            print("同じ名前がすでに存在しています")
+            return render_template("first_page.html")
+        else:
+            db.session.add(user)
+            db.session.commit()
+            session["user_id"] = user.id
+            return redirect(url_for("show_entries"))
+    else:
+        return render_template("first_page.html")
 
 @app.route('/logout')
 def logout():
