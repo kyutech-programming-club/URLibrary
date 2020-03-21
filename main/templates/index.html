@@ -37,18 +37,16 @@ function DragOver(event) {
 
 <div class="drop" id="DROP">
   <h1>Favos</h1>
-  
-<div class="getin" id="dd2" ondragover="DragOver(event)" ondrop="Drop(event)"></div>
 
-<div class="favo">
-{% for favo in favos %}
-  <a href="{{favo.url}}">{{favo.url}}</a>
-  <br>
-  <p>{{favo.title}}</p>
-{% endfor %}
-</div>
-
-
+  <div class="getin" id="dd2" ondragover="DragOver(event)" ondrop="Drop(event)">
+  </div>
+  <div class="favo">
+    {% for favo in favos %}
+    <a href="{{favo.url}}">{{favo.url}}</a>
+    <br>
+    <p>{{favo.title}}</p>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}

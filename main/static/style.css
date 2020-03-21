@@ -1,12 +1,39 @@
-.getout {
-  width:50%;height:10%;background-color:orange; padding: 10px; margin:10px; color: white;
-},
-.getin:empty {
-  width:50px; height:100px; padding:10px; color: orange; background-color:blue;displzy:none;
-},
-.drag {
-  width:100%; height:100%; padding:10px; color: black;
-},
-.drop {
-  width:100%; height:100%; padding:10px; color: white;
+#dd1 {
+  width:50%;
+  height:10%;
+  background-color:orange;
+  padding: 10px;
+  margin:10px;
+  color: white;
+}
+#dd2:empty {
+  width:50px;
+  height:100px;
+  padding:10px; color:
+  orange; background-color:blue;
+  display:none;
+}
+#DRAG {
+  width:50%;
+  height:100%;
+  padding:10px;
+  color: black;
+  float: left;
+  text-align: center;
+}
+#DROP {
+  width:50%;
+  height:100%;
+  padding:10px;
+  color: black;
+  float: right;
+  background-color:blue;
+  text-align: center;
+
+}
+
+
+
+#container{
+  width:100%; height:100%;
 }
