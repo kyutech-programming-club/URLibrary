@@ -22,28 +22,38 @@ function DragOver(event) {
 }
 </script>
 
+<div id = "Allpage">
 
-  <h1>Time Line</h1>
-  <div class="dd1" id="list1">
-  {% for url in urls %}
-  <div>
-    <a href="{{url.url}}">{{url.url}}</a>
-    <br>
-    <p>{{url.title}}</p>
+  <div id = "source_left">
+    <h1>Time Line</h1>
+      <div id="list1">
+        {% for url in urls %}
+          <div id ="each_URL">
+            <a href="{{url.url}}">{{url.url}}</a>
+            <br>
+            <p>{{url.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
   </div>
-  {% endfor %}
 
+  <dev id = "favos_right">
+    <h1>Favos</h1>
+      <div id="list2">
+        <div id = "list3">
+          <p>ここにドラッグアンドドロップ</p>
+        </div>
+        {% for favo in favos %}
+          <div id = "select_URL">
+            <a href="{{favo.url}}">{{favo.url}}</a>
+            <br>
+            <p>{{favo.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
+  </dev>
 
-  <h1>Favos</h1>
-
-  <div class="dd2" id="list2">
-    {% for favo in favos %}
-    <a href="{{favo.url}}">{{favo.url}}</a>
-    <br>
-    <p>{{favo.title}}</p>
-    {% endfor %}
-  </div>
-  
+</div>
 <script type="text/javascript">
   new Sortable(document.getElementById('list1'), {
   group: 'shared',
@@ -55,8 +65,10 @@ function DragOver(event) {
     console.log(itemEl.children[2]['innerText'])
   }
   });
-  
+
+
 new Sortable(document.getElementById('list2'), { group: 'shared' , filter:"<a>"});
+new Sortable(document.getElementById('list3'), { disabled: true   });
 </script>
 
 {% endblock %}
