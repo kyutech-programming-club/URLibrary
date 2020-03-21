@@ -1,0 +1,34 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href='{{url_for("show_entries")}}'>Flask Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav navbar-nav navbar-right">
+        {% if not session.logged_in %} <!--  ログインしていないときの処理 -->
+        <li class="nav-item">
+          <a class="nav-link" href='{{url_for("login")}}'>ログイン</a>
+        </li>
+        {% else %} <!-- ログインしているときの処理 -->
+        <li class="nav-item">
+          <a class="nav-link" href='{{url_for("logout")}}'>ログアウト</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+<!-- bootstrapのナビゲーションバーのテンプレ ( {}内はjinja2の条件文 抜かしていい)
+
+Flaskにおけるhtmlのレンダリングでは、Jinja2というテンプレートエンジンを使っています。 これにより{　% で囲んで条件文を{　{で囲むことで、サーバから渡された変数を表示することができます.
+ログインしていないときはログインリンクを表示させ、ログインしているときはログアウトリンクを表示させています。だとよ  login しているときとしていないときでナビゲーションバーの表示を変えている
+実はこのコメント全角スペースを使ってエラーを回避しています！！いじらないでね！！ -->
+
+
+
+  <div class = "blog-body">
+    {% block body %}{% endblock %}
+  </div>
+</div>
