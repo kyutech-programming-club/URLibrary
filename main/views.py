@@ -1,6 +1,6 @@
 from main import app
 from flask import request, redirect, url_for, render_template, flash, session
-from main.models import db, User
+from main.models import db, User, Url
 
 @app.route("/")
 def show_entries():
@@ -51,6 +51,8 @@ def logout():
 def print_debug():
     if request.method == 'POST':
         data = dict(request.form)
-        print(data)
+        user_id = User.query.filter_by(id=data["name"]).first()
+        db.session.add(Url(maker=data["name"], url=data["url"], title=data["title"]))
+        db.session.commit()
 
     return 'ディーバっく'
