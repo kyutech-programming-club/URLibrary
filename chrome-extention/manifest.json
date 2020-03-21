@@ -1,0 +1,19 @@
+{
+  "name": "Aample",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Sample Chrome Extension",
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background":{
+    "scripts":[
+      "bg.js"
+    ],
+    "persistent": false
+  }
+}
