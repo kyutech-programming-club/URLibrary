@@ -1,5 +1,5 @@
 from main import app
-from flask import request, redirect, url_for, render_template, flash, session
+from flask import request, redirect, url_for, render_template, flash, sessio
 from main.models import db, User, Url, Favo
 
 @app.route("/")
@@ -52,3 +52,13 @@ def create_user():
 def logout():
     session.pop("user_id",None) #session情報を削除
     return redirect(url_for("show_entries"))
+
+@app.route('/debug', methods= ['POST', 'GET'])
+def print_debug():
+    if request.method == 'POST':
+        data = dict(request.form)
+        user_id = User.query.filter_by(id=data["name"]).first()
+        db.session.add(Url(maker=data["name"], url=data["url"], title=data["title"]))
+        db.session.commit()
+
+    return 'ディーバっく'
