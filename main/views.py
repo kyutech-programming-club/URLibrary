@@ -46,3 +46,11 @@ def create_user():
 def logout():
     session.pop("user_id",None) #session情報を削除
     return redirect(url_for("show_entries"))
+
+@app.route('/debug', methods= ['POST', 'GET'])
+def print_debug():
+    if request.method == 'POST':
+        data = dict(request.form)
+        print(data)
+
+    return 'ディーバっく'
