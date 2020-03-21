@@ -16,13 +16,13 @@ class Url(db.Model):
     title = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
-        return "<id={self.id} maker={self.name}, url={self.url}, title={self.title}>".format(self=self)
+        return "<id={self.id} maker={self.maker}, url={self.url}, title={self.title}>".format(self=self)
 
 class Favo(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    url_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    url_id = db.Column(db.Integer)
 
     def __repr__(self):
         return "<id={self.id} user_id={self.user_id}, url_id={self.url_id}>".format(self=self)
