@@ -1,5 +1,5 @@
 from main import app
-from flask import request, redirect, url_for, render_template, flash, sessio
+from flask import request, redirect, url_for, render_template, flash, session
 from main.models import db, User, Url, Favo
 
 @app.route("/")
@@ -8,7 +8,7 @@ def show_entries():
     if not session.get("user_id"):
         #print("session is none")
         return redirect(url_for("create_user"))
-    urls = Url.query.all()
+    urls = Url.query.order_by(Url.id.desc()).all()
     favos = Favo.query.filter_by(user_id=session.get("user_id")).all()
     favo_urls = []
     for favo in favos:
