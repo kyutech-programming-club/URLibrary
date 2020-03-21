@@ -22,33 +22,53 @@ function DragOver(event) {
 }
 </script>
 
-<div class="drag" id="DRAG" ondragover="DragOver(event)" ondrop="Drop(event)">
-  <h1>Time Line</h1>
+<div id = "Allpage">
 
-  {% for url in urls %}
-  <div class="getout" id="dd1" draggable="true" ondragstart="DragStart(event)">
-    <a href="{{url.url}}">{{url.url}}</a>
-    <br>
-    <p>{{url.title}}</p>
+  <div id = "source_left">
+    <h1>Time Line</h1>
+      <div id="list1">
+        {% for url in urls %}
+          <div id ="each_URL">
+            <a href="{{url.url}}">{{url.url}}</a>
+            <br>
+            <p>{{url.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
   </div>
-  {% endfor %}
+
+  <dev id = "favos_right">
+    <h1>Favos</h1>
+      <div id="list2">
+        <div id = "list3">
+          <p>ここにドラッグアンドドロップ</p>
+        </div>
+        {% for favo in favos %}
+          <div id = "select_URL">
+            <a href="{{favo.url}}">{{favo.url}}</a>
+            <br>
+            <p>{{favo.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
+  </dev>
 
 </div>
+<script type="text/javascript">
+  new Sortable(document.getElementById('list1'), {
+  group: 'shared',
+	  filter:"<a>",
+  onEnd: function (/**Event*/evt) {
+	var itemEl = evt.item;  // dragged HTMLElement
+	console.log(itemEl);
+    console.log(itemEl.children[0]['text']);
+    console.log(itemEl.children[2]['innerText'])
+  }
+  });
 
-<div class="drop" id="DROP">
-  <h1>Favos</h1>
 
-  <div class="getin" id="dd2" ondragover="DragOver(event)" ondrop="Drop(event)">
-  
-
-  </div>
-  <div class="favo">
-    {% for favo in favos %}
-    <a href="{{favo.url}}">{{favo.url}}</a>
-    <br>
-    <p>{{favo.title}}</p>
-    {% endfor %}
-  </div>
-</div>
+new Sortable(document.getElementById('list2'), { group: 'shared' , filter:"<a>"});
+new Sortable(document.getElementById('list3'), { disabled: true   });
+</script>
 
 {% endblock %}

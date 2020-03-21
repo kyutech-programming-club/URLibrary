@@ -1,5 +1,5 @@
 async function postForm() {
-    var URL = 'http://192.168.1.140:5000/debug';
+    var URL = 'http://192.168.1.141:5000/debug';
 
     var tabs = await chrome.tabs.query({active: true});
     var name = await chrome.storage.sync.get("name");
