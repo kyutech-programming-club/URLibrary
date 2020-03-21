@@ -6,15 +6,9 @@
   margin:10px;
   color: white;
 }
-#dd2:empty {
-  width:50px;
-  height:100px;
-  padding:10px; color:
-  orange; background-color:blue;
-  display:none;
-}
+
 #DRAG {
-  width:50%;
+  width:45%;
   height:100%;
   padding:10px;
   color: black;
@@ -22,17 +16,24 @@
   text-align: center;
 }
 #DROP {
-  width:50%;
+  width:45%;
   height:100%;
   padding:10px;
   color: black;
-  float: right;
   background-color:blue;
   text-align: center;
+  float: right;
 
 }
+#dd2{
+  width:80%;
+  height:100%;
+  padding:10px;
+  color:orange;
+  background-color:blue;
+  display:inline-block;
 
-
+}
 
 #container{
   width:100%; height:100%;
