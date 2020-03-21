@@ -1,20 +1,5 @@
-/*
-chrome.storage.sync.get("name", function (value) {
-    console.log(value["name"] == undefined);
-});
-
-    chrome.tabs.getSelected(null, function(tab) {
-        request.value = tab.title + '\n';
-        request.value += tab.url;
-    });
-
-*/
-
-
-
-
 async function postForm() {
-    var URL = 'http://192.168.1.141:5000/1';
+    var URL = 'http://192.168.1.141:5000/debug';
 
     var tabs = await chrome.tabs.query({active: true});
     var name = await chrome.storage.sync.get("name");
@@ -45,24 +30,5 @@ async function postForm() {
     document.body.appendChild(form); 
     form.submit();
 };
-
-function postForm2() {
-    var title = '',url = '',link = '';
-    chrome.tabs.getSelected(null, function(tab) {
-        title = tab.title;
-        url = tab.url;
-        link = tab.title;
-    });
-    var form = document.createElement('form');
-    document.body.appendChild(form);
-    var input = document.createElement('input');
-    input.setAttribute('type','hidden');
-    //input.setAttribute('title', title);
-    input.setAttribute('link', link);
-    form.appendChild(input);
-    form.setAttribute('action', 'http://192.168.1.141:5000/1');
-    form.setAttribute('method', 'POST');
-    form.submit();
-}
 
 window.addEventListener("click", postForm, false);
