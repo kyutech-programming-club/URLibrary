@@ -1,6 +1,6 @@
 from main import app
-from flask import request, redirect, url_for, render_template, flash, session
-from main.models import db, User, Url
+from flask import request, redirect, url_for, render_template, flash, sessio
+from main.models import db, User, Url, Favo
 
 @app.route("/")
 def show_entries():
@@ -8,7 +8,13 @@ def show_entries():
     if not session.get("user_id"):
         #print("session is none")
         return redirect(url_for("create_user"))
-    return render_template("index.html")
+    urls = Url.query.all()
+    favos = Favo.query.filter_by(user_id=session.get("user_id")).all()
+    favo_urls = []
+    for favo in favos:
+        favo_urls.append(Url.query.filter_by(id=favo.url_id).first())
+
+    return render_template("index.html", urls=urls, favos=favo_urls)
 
 # /loginにリクエストがあったときのルーティング (GET,POST つかいますよーっって感じ)
 @app.route('/login', methods=['GET', 'POST'])
