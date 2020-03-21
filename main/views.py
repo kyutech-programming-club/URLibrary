@@ -6,14 +6,14 @@ from main.models import db, User
 def show_entries():
     # loginしていないときの処理（loginしていないときloginフォームへリダイレクト）
     if not session.get("user_id"):
-        print("session is none")
+        #print("session is none")
         return redirect(url_for("login"))
     return render_template("index.html")
 
 # /loginにリクエストがあったときのルーティング (GET,POST つかいますよーっって感じ)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    
+
     if request.method == 'POST': #もしPOSTリクエストがあったとき
         user  = User.query.filter_by(name=request.form["username"]).first()
         if user is None:
@@ -29,5 +29,5 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop("logged_in",None) #session情報を削除
-    return redirect(url_for('show_entries'))
+    session.pop("user_id",None) #session情報を削除
+    return redirect(url_for("show_entries"))
