@@ -1,5 +1,54 @@
 {% extends "layout.html" %}  <!-- layout.html の引き継ぎ -->
 
 {% block body %}
-  hello world
+<script type="text/javascript">
+
+  // ドラッグ開始時にデータの値を設定する
+  function DragStart(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+// ドロップ時に元のドラッグ値を取得し、現在の要素上に入れ子で保存する
+function Drop(event) {
+  var id = event.dataTransfer.getData("text");
+  var elm = document.getElementById(id);
+  event.currentTarget.appendChild(elm);
+  event.preventDefault();
+}
+
+// ブラウザ標準のドロップ動作をキャンセル
+function DragOver(event) {
+  event.preventDefault();
+}
+</script>
+
+<div class="drag" id="DRAG" ondragover="DragOver(event)" ondrop="Drop(event)">
+  <h1>Time Line</h1>
+
+  {% for url in urls %}
+  <div class="getout" id="dd1" draggable="true" ondragstart="DragStart(event)">
+    <a href="{{url.url}}">{{url.url}}</a>
+    <br>
+    <p>{{url.title}}</p>
+  </div>
+  {% endfor %}
+
+</div>
+
+<div class="drop" id="DROP">
+  <h1>Favos</h1>
+  
+<div class="getin" id="dd2" ondragover="DragOver(event)" ondrop="Drop(event)"></div>
+
+<div class="favo">
+{% for favo in favos %}
+  <a href="{{favo.url}}">{{favo.url}}</a>
+  <br>
+  <p>{{favo.title}}</p>
+{% endfor %}
+</div>
+
+
+</div>
+
 {% endblock %}
