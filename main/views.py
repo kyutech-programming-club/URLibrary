@@ -67,6 +67,10 @@ def logout():
     session.pop("user_id",None) #session情報を削除
     return redirect(url_for("show_entries"))
 
+@app.route("/howto")
+def howto():
+    return render_template("howto.html")
+
 @app.route('/debug', methods= ['POST', 'GET'])
 def print_debug():
     if request.method == 'POST':
