@@ -1,0 +1,25 @@
+{
+  "name": "URLibrary",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "URL共有",
+  "icons": {
+    "16": "share.png",
+    "48": "share.png",
+    "128": "share.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "share.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
+}

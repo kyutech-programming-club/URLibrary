@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/static/style.css">
+<title>URLibrary</title>
+</head>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href='{{url_for("show_entries")}}'>URLibrary</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav navbar-nav navbar-right">
+      {% if not session.user_id %}
+        <li class="nav-item">
+          <a class="nav-link" href='{{url_for("login")}}'>ログイン</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href='{{url_for("logout")}}'>ログアウト</a>
+        </li>
+        <li>
+          <a class="nav-link" href='{{url_for("howto")}}'>使い方</a>
+        </li>
+      {% endif %}
+      </ul>
+    </div>
+  </nav>
+<!-- bootstrapのナビゲーションバーのテンプレ ( {}内はjinja2の条件文 抜かしていい)
+
+Flaskにおけるhtmlのレンダリングでは、Jinja2というテンプレートエンジンを使っています。 これにより{　% で囲んで条件文を{　{で囲むことで、サーバから渡された変数を表示することができます.
+ログインしていないときはログインリンクを表示させ、ログインしているときはログアウトリンクを表示させています。だとよ  login しているときとしていないときでナビゲーションバーの表示を変えている
+実はこのコメント全角スペースを使ってエラーを回避しています！！いじらないでね！！ -->
+  <div class = "blog-body">
+    {% block body %}{% endblock %}
+  </div>
+</div>

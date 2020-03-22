@@ -1,0 +1,83 @@
+#Allpage{
+  width:100%;
+  height: auto;
+}
+
+
+#source_left{
+  width:45%;
+  height: auto;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #fff8e8;
+  border-left: solid 10px #ffc06e;
+  border-radius: 5px;
+}
+
+#each_URL{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #232323;
+    background: #ffe8b5;
+    border-right: solid 10px #ffc06e;
+    border-radius: 5px;
+}
+#each_URL p , a {
+    margin: 0;
+    padding: 0;
+    font-style: "メイリオ";
+}
+
+#list3{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  background: #EAFFFF;
+  border: dashed 2px #5b8bd0;/*点線*/
+  border-radius: 4px;
+
+}
+
+#theme{
+  font-family: "メイリオ";
+  font-weight: bold;
+}
+
+#list3 p{
+  margin: 0;
+  padding: 0;
+  font-style: "メイリオ";
+}
+#favos_right{
+  width: 45%;
+  height: auto;
+  float: right;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #ffeaea;
+  border-left: solid 10px #ff9e9e;
+  border-radius: 5px;
+}
+
+
+
+#select_URL {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #ffd1d1;
+  border-right: solid 10px #ff9e9e;
+  border-radius: 5px;
+}
+
+#select_URL p , a{
+  margin: 0;
+  padding: 0;
+  font: "メイリオ";
+}

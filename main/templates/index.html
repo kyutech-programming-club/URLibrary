@@ -1,0 +1,81 @@
+{% extends "layout.html" %}  <!-- layout.html の引き継ぎ -->
+
+{% block body %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  // ドラッグ開始時にデータの値を設定する
+  function DragStart(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+// ドロップ時に元のドラッグ値を取得し、現在の要素上に入れ子で保存する
+function Drop(event) {
+  var id = event.dataTransfer.getData("text");
+  var elm = document.getElementById(id);
+  event.currentTarget.appendChild(elm);
+  event.preventDefault();
+}
+
+// ブラウザ標準のドロップ動作をキャンセル
+function DragOver(event) {
+  event.preventDefault();
+  }
+</script>
+
+<div id = "Allpage">
+
+  <div id = "source_left">
+    <h1 id="theme">Time Line</h1>
+      <div id="list1">
+        {% for url in urls %}
+          <div id ="each_URL" style="border-left:solid 30px {{color[url.maker]}};">
+            <a href="{{url.url}}">{{url.url}}</a>
+            <br>
+            <p id='{{url.id}}' >{{url.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+
+  <div id = "favos_right">
+    <h1 id = "theme">Favos</h1>
+      <div id="list2">
+        <div id = "list3">
+          <p align="center">ここにドラッグアンドドロップ</p>
+        </div>
+        {% for favo in favos %}
+          <div id = "select_URL">
+            <a href="{{favo.url}}">{{favo.url}}</a>
+            <br>
+            <p>{{favo.title}}</p>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+
+  new Sortable(document.getElementById('list1'), {
+  group: 'shared',
+	  filter:"<a>",
+  onEnd: function (/**Event*/evt) {
+	var itemEl = evt.item;  // dragged HTMLElement
+	console.log(itemEl.children);
+  //console.log(itemEl.children[0]['text']);
+  var  url_id = itemEl.children[2]['id']
+  var user_id = {{session['user_id']}};
+  console.log(user_id);
+  console.log(url_id);
+
+    window.location.href = "{{url_for('favo')}}?user_id="+user_id+"&url_id="+url_id;
+  
+  }
+  });
+
+new Sortable(document.getElementById('list2'), { group: 'shared' , filter:"<a>"});
+new Sortable(document.getElementById('list3'), { sort: false , disabled: false });
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layout.html" %}  <!-- layout.html の引き継ぎ -->
+
+{% block body %}
+<form action="{{url_for('create_user')}}" method=post>
+  <div class="form-group">
+    <label for="InputTitle">新規ユーザ名</label>
+    <input type="text" class="form-control" id="InputTitle" name=username>
+  </div>
+  <button type="submit" class="btn btn-primary">新規ユーザー登録</button>
+</form>
+
+{% endblock %}
