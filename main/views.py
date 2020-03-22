@@ -80,3 +80,14 @@ def print_debug():
         db.session.commit()
 
     return 'ディーバっく'
+
+@app.route('/favo/<user_id>/<url>', methods= ['POST', 'GET'])
+def favo(user_id, url):
+    if request.method == 'POST':
+        print(url, user_id)
+        url_id = Url.query.filter_by(url=url).first().id
+        favo = Favo(user_id=user_id, url_id=url_id)
+        db.session.add(favo)
+        db.session.commit()
+
+
