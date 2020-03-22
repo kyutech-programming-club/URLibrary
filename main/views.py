@@ -2,19 +2,33 @@ from main import app
 from flask import request, redirect, url_for, render_template, flash, session
 from main.models import db, User, Url, Favo
 
+color = [
+    "blue","yellow","red","lime",
+    "purple","aqua","black","navy","gray",
+    "silver", "teal","fuchsia","olive","white"
+]
+
 @app.route("/")
 def show_entries():
     # loginしていないときの処理（loginしていないときloginフォームへリダイレクト）
     if not session.get("user_id"):
         #print("session is none")
         return redirect(url_for("create_user"))
+    users = User.query.all()
+    user_names = []
+
+    for user in users:
+        user_names.append(user.name)
+    
+    color_dict = dict(zip(user_names, color))
     urls = Url.query.order_by(Url.id.desc()).all()
+
     favos = Favo.query.filter_by(user_id=session.get("user_id")).all()
     favo_urls = []
     for favo in favos:
         favo_urls.append(Url.query.filter_by(id=favo.url_id).first())
 
-    return render_template("index.html", urls=urls, favos=favo_urls)
+    return render_template("index.html", urls=urls, favos=favo_urls, color=color_dict)
 
 # /loginにリクエストがあったときのルーティング (GET,POST つかいますよーっって感じ)
 @app.route('/login', methods=['GET', 'POST'])
