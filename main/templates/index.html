@@ -19,7 +19,7 @@ function Drop(event) {
 // ブラウザ標準のドロップ動作をキャンセル
 function DragOver(event) {
   event.preventDefault();
-}
+  }
 </script>
 
 <div id = "Allpage">
@@ -28,7 +28,7 @@ function DragOver(event) {
     <h1 id="theme">Time Line</h1>
       <div id="list1">
         {% for url in urls %}
-          <div id ="each_URL">
+          <div id ="each_URL" style="border-left:solid 30px {{color[url.maker]}};">
             <a href="{{url.url}}">{{url.url}}</a>
             <br>
             <p>{{url.title}}</p>
