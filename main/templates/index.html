@@ -31,6 +31,7 @@ function DragOver(event) {
       <div id="list1">
         {% for url in urls %}
           <div id ="each_URL" style="border-left:solid 30px {{color[url.maker]}};">
+            <p>@{{url.maker}}</p>
             <a href="{{url.url}}">{{url.url}}</a>
             <br>
             <p>{{url.title}}</p>
