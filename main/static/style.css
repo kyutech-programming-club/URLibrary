@@ -10,31 +10,46 @@
   float: left;
   margin-left: auto;
   margin-right: auto;
-  overflow: scroll;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #fff8e8;
+  border-left: solid 10px #ffc06e;
+  border-radius: 5px;
 }
 
 #each_URL{
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #232323;
-    background: #fff8e8;
-    border-left: solid 10px #ffc06e;
+    background: #ffe8b5;
+    border-right: solid 10px #ffc06e;
+    border-radius: 5px;
 }
 #each_URL p , a {
     margin: 0;
     padding: 0;
+    font-style: "メイリオ";
 }
 
 #list3{
   padding: 0.5em 1em;
   margin: 2em 0;
-  background: #f0f7ff;
+  background: #EAFFFF;
   border: dashed 2px #5b8bd0;/*点線*/
+  border-radius: 4px;
+
+}
+
+#theme{
+  font-family: "メイリオ";
+  font-weight: bold;
 }
 
 #list3 p{
   margin: 0;
   padding: 0;
+  font-style: "メイリオ";
 }
 #favos_right{
   width: 45%;
@@ -42,21 +57,27 @@
   float: right;
   margin-left: auto;
   margin-right: auto;
-  overflow: scroll;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #ffeaea;
+  border-left: solid 10px #ff9e9e;
+  border-radius: 5px;
 }
 
 
 
 #select_URL {
-  padding: 8px 19px;
+  padding: 0.5em 1em;
   margin: 2em 0;
-  color: #2c2c2f;
-  background: #cde4ff;
-  border-top: solid 5px #5989cf;
-  border-bottom: solid 5px #5989cf;
+  color: #232323;
+  background: #ffd1d1;
+  border-right: solid 10px #ff9e9e;
+  border-radius: 5px;
 }
 
 #select_URL p , a{
   margin: 0;
   padding: 0;
+  font: "メイリオ";
 }
