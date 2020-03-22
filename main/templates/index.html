@@ -33,7 +33,7 @@ function DragOver(event) {
           <div id ="each_URL" style="border-left:solid 30px {{color[url.maker]}};">
             <a href="{{url.url}}">{{url.url}}</a>
             <br>
-            <p>{{url.title}}</p>
+            <p id='{{url.id}}' >{{url.title}}</p>
           </div>
         {% endfor %}
       </div>
@@ -63,29 +63,19 @@ function DragOver(event) {
 	  filter:"<a>",
   onEnd: function (/**Event*/evt) {
 	var itemEl = evt.item;  // dragged HTMLElement
-	console.log(itemEl);
+	console.log(itemEl.children);
   //console.log(itemEl.children[0]['text']);
-  var  url = itemEl.children[0]['text']
+  var  url_id = itemEl.children[2]['id']
   var user_id = {{session['user_id']}};
-  
-  function post(a, b){
-    console.log(a);
-    console.log(b);
-    var res = $.ajax({
-    url: "https://urlibrary.herokuapp.com/favo"+"/" +b +"/"+a,
-    contentType: 'application/json;charset=UTF-8',
-    type: 'POST',
-    async: false
-  }).responseText;
-  return res;
-  }
+  console.log(user_id);
+  console.log(url_id);
 
-  var result = post(url, user_id);
-  //window.location.reload();
+    window.location.href = "{{url_for('favo')}}?user_id="+user_id+"&url_id="+url_id;
+  
   }
   });
 
 new Sortable(document.getElementById('list2'), { group: 'shared' , filter:"<a>"});
 new Sortable(document.getElementById('list3'), { sort: false , disabled: false });
 </script>
-
+{% endblock %}

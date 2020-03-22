@@ -81,13 +81,30 @@ def print_debug():
 
     return 'ディーバっく'
 
-@app.route('/favo/<user_id>/<url>', methods= ['POST', 'GET'])
-def favo(user_id, url):
-    if request.method == 'POST':
-        print(url, user_id)
-        url_id = Url.query.filter_by(url=url).first().id
-        favo = Favo(user_id=user_id, url_id=url_id)
-        db.session.add(favo)
-        db.session.commit()
+@app.route('/favo')
+def favo():
+    user_id = int(request.args.get('user_id'))
+    url_id = int(request.args.get('url_id'))
 
+    print(user_id, url_id)
+    favo = Favo(user_id=user_id, url_id=url_id)
+    db.session.add(favo)
+    db.session.commit()
 
+    print("save")
+    
+    users = User.query.all()
+    user_names = []
+
+    for user in users:
+        user_names.append(user.name)
+    
+    color_dict = dict(zip(user_names, color))
+    urls = Url.query.order_by(Url.id.desc()).all()
+
+    favos = Favo.query.filter_by(user_id=session.get("user_id")).all()
+    favo_urls = []
+    for favo in favos:
+        favo_urls.append(Url.query.filter_by(id=favo.url_id).first())
+
+    return render_template('index.html', urls=urls, favos=favo_urls, color=color_dict)
