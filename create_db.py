@@ -23,6 +23,6 @@ for ur in urls:
     db.session.commit()
 
 for i in range(20):
-    favo = Favo(user_id=random.randint(0,5), url_id=i)
+    favo = Favo(user_id=random.randint(1,6), url_id=i)
     db.session.add(favo)
     db.session.commit()
